@@ -1,0 +1,69 @@
+{
+  "name": "twclsx",
+  "version": "1.0.0",
+  "author": "Chris Vandenberg",
+  "license": "ISC",
+  "description": "Javascript objects for utility classes, inspired by tailwind.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altruisticsoftware/twclsx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/altruisticsoftware/twclsx/issues"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "format": "npx prettier --write \"index.ts\" \"index.spec.ts\"",
+    "build": "./node_modules/typescript/bin/tsc -p tsconfig.build.json",
+    "lint": "npx eslint index.ts index.spec.ts",
+    "test": "jest --coverage",
+    "test-watch": "jest --coverage --watch",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "index.ts"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "jsxSingleQuote": false,
+    "printWidth": 80,
+    "semi": true,
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "clsx",
+    "classnames",
+    "tw",
+    "twclsx",
+    "styles",
+    "javascript",
+    "typescript",
+    "object"
+  ],
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard-with-typescript": "^15.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^25.1.0",
+    "prettier": "^2.0.1",
+    "ts-jest": "^25.2.1",
+    "typescript": "^3.8.3"
+  }
+}

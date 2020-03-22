@@ -1,0 +1,13 @@
+{
+  "extends": "standard-with-typescript",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": ["lib", "node_modules", "coverage"],
+  "rules": {
+    "comma-dangle": 0,
+    "semi": 0,
+    "@typescript-eslint/member-delimiter-style": 0,
+    "@typescript-eslint/indent": 0
+  }
+}
