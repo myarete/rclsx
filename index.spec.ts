@@ -1,5 +1,12 @@
 import { twclsx, errors, configure, Config } from '.';
 
+test('Only base class with no responsive object', () => {
+  const actual = twclsx({ sm: 'py-1 mx-1' });
+  const expected = 'px-1 sm:py-1 sm:mx-1';
+
+  expect(actual).toBe(expected);
+});
+
 test('One responsive object key', () => {
   const actual = twclsx('px-1', { sm: 'py-1 mx-1' });
   const expected = 'px-1 sm:py-1 sm:mx-1';
@@ -15,7 +22,7 @@ test('Several responsive object keys', () => {
 });
 
 test('Non-string key values', () => {
-  const expected = errors.INCORRECT_KEY_TYPE;
+  const expected = errors.INCORRECT_VALUE_TYPE;
 
   // @ts-ignore
   expect(() => twclsx('px-1', { sm: 123 })).toThrowError(expected);
