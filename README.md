@@ -22,7 +22,7 @@ twclsx('mt-2', {
 // => 'mt-2 sm:px-1 sm:py-2 md:px-4 md:py-4'
 ```
 
-2. Custom configuration. 
+<!-- 2. Custom configuration. 
 
 ```ts
 // someUtilFile.{ts|js}
@@ -42,9 +42,9 @@ twclsx('mt-2', {
 });
 
 // => 'mt-2 sm::px-1 sm::py-2 md::px-4 md::py-4'
-```
+``` -->
 
-3. Custom configuration with type support.
+<!-- 3. Custom configuration with type support.
 
 ```ts
 // someUtilFile.{ts|js}
@@ -63,9 +63,9 @@ twclsx('mt-2', {
   large: '' // ts error, "large" not assignable to "BreakPoint".
 });
 
-```
+``` -->
 
-4. React.
+2. React.
 
 ```tsx
 import { twclsx } from 'twclsx';

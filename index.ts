@@ -1,7 +1,7 @@
 /**
  * @description Default keys for the responsive object param.
  */
-export type DefaultBreakPoint = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type BreakPoint = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 export interface Config {
   /**
@@ -32,7 +32,7 @@ export interface Config {
   delimiter?: string;
 }
 
-export type Twclsx<BreakPoint extends string> = (
+export type Twclsx = (
   /**
    * @description The utility classes that will be applied to all breakpoints.
    * Can be a string, or the responsive object if no shared classNames are
@@ -44,7 +44,7 @@ export type Twclsx<BreakPoint extends string> = (
    * twclsx('px-2 py-2'); // => 'px-2 py-2'
    * ```
    */
-  base: string | typeof params,
+  base: string,
   /**
    * @description The object consisting of your breakpoints as the keys and the
    * applicable classNames as the values.
@@ -55,12 +55,7 @@ export type Twclsx<BreakPoint extends string> = (
    * twclsx({ sm: 'px-2', md: 'px-4' }); // => 'sm:px-2 md:px-4'
    * ```
    */
-  params?: Partial<Record<BreakPoint, string>>,
-  /**
-   * @description Optional configure object.
-   * @type {Config}
-   */
-  config?: Config,
+  params: Partial<Record<BreakPoint, string>>,
 ) => string;
 
 /**
@@ -99,16 +94,11 @@ const prefixIterator: PrefixIterator = (breakPoint, separator) => className =>
  * responsive object and adds returns them all in the own index of an array.
  */
 export type Reducer = (
-  mergedConfig: Required<Config>,
-) => (
   accumulator: string[],
   [breakPoint, breakPointClassName]: [string, string | undefined],
 ) => string[];
 
-const reducer: Reducer = mergedConfig => (
-  accumulator,
-  [breakPoint, breakPointClassName],
-) => {
+const reducer: Reducer = (accumulator, [breakPoint, breakPointClassName]) => {
   // Values must be strings.
   if (typeof breakPointClassName !== 'string') {
     throw new Error(errors.INCORRECT_VALUE_TYPE);
@@ -116,8 +106,8 @@ const reducer: Reducer = mergedConfig => (
 
   // Where the magic happens, split the className by delimiter and concat.
   const prefixed: string[] = breakPointClassName
-    .split(mergedConfig.delimiter)
-    .map(prefixIterator(breakPoint, mergedConfig.separator));
+    .split(defaultConfig.delimiter)
+    .map(prefixIterator(breakPoint, defaultConfig.separator));
 
   // Merge.
   return [...accumulator, ...prefixed];
@@ -126,53 +116,18 @@ const reducer: Reducer = mergedConfig => (
 /**
  * The mothership.
  */
-export const twclsx: Twclsx<DefaultBreakPoint> = (...args) => {
-  // First off, let's get these how we want them.
-  let [base, params, config] = args;
-
+export const twclsx: Twclsx = (base, params) => {
   if (typeof base === 'undefined') {
     // Can't pass undefined.
     throw new Error(errors.PARAMETERS_REQUIRED);
   }
 
-  if (typeof base !== 'string') {
-    // At this point, we know it's intended to be params.
-    params = base;
-    base = '';
-  }
-
-  // Sanity null check for non-ts users.
-  if (params == null) throw new Error(errors.NULL_PARAMS);
-
-  // Merge configs, overwrite any defaults with the user inputs.
-  const mergedConfig: Required<Config> = {
-    ...defaultConfig,
-    ...config,
-  };
-
   // Format the object to utilize abstract keys.
   const entries = Object.entries(params);
 
   // Acquire all the prefixed entries in an array of strings.
-  const values: string[] = entries.reduce(reducer(mergedConfig), [base]);
+  const values: string[] = entries.reduce(reducer, [base]);
 
   // Done-zo.
   return values.join(' ');
 };
-
-// TODO: If there's a better way to do this, please PR :)
-type FirstParam<T> = Parameters<Twclsx<T extends string ? T : never>>[0];
-type SecondParam<T> = Parameters<Twclsx<T extends string ? T : never>>[1];
-
-/**
- * @description Utilizing closure to decouple the need for a config param.
- */
-type Configure = <CustomBreakPoint = DefaultBreakPoint>(
-  config: Partial<Config>,
-) => (
-  base: FirstParam<CustomBreakPoint>,
-  params: SecondParam<CustomBreakPoint>,
-) => Twclsx<CustomBreakPoint extends string ? CustomBreakPoint : never>;
-
-export const configure: Configure = config => (...args) =>
-  twclsx([...args, config]);
