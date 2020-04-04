@@ -36,7 +36,7 @@ const reducer = (
 export const rclsx = (
   ...args: [string | ResponsiveObject, ResponsiveObject?]
 ): string => {
-  let [base = '', responsiveObject = {}] = args;
+  let [base, responsiveObject = {}] = args;
 
   // If the first parameter is an object, we can assume there is no base class,
   // and that this is intended to be the responsive object.
@@ -49,5 +49,5 @@ export const rclsx = (
 
   const combined: string[] = entries.reduce(reducer, [format(base)]);
 
-  return combined.join(' ');
+  return combined.join(' ').trim();
 };

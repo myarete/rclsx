@@ -1,23 +1,53 @@
-import { twclsx, errors } from '.';
 import { rclsx } from './index';
 
-test('One responsive object key', () => {
-  const actual = twclsx('px-1', { sm: 'py-1 mx-1' });
-  const expected = 'px-1 sm:py-1 sm:mx-1';
+test('Just a base class', () => {
+  const actual = rclsx('base');
+  const expected = 'base';
 
   expect(actual).toBe(expected);
 });
 
-test('Several responsive object keys', () => {
-  const actual = twclsx('px-1', { sm: 'py-1 mx-1', md: 'py-2 mx-2' });
-  const expected = 'px-1 sm:py-1 sm:mx-1 md:py-2 md:mx-2';
+test('Just a responsive object', () => {
+  const actual = rclsx({ sm: 'sm-class other-sm-class' });
+  const expected = 'sm:sm-class sm:other-sm-class';
 
   expect(actual).toBe(expected);
 });
 
-test('Non-string key values', () => {
-  const expected = errors.INCORRECT_VALUE_TYPE;
+test('Base class with one responsive object key', () => {
+  const actual = rclsx('base', { sm: 'sm-class other-sm-class' });
+  const expected = 'base sm:sm-class sm:other-sm-class';
 
-  // @ts-ignore
-  expect(() => twclsx('px-1', { sm: 123 })).toThrowError(expected);
+  expect(actual).toBe(expected);
+});
+
+test('Base class with one responsive object key', () => {
+  const actual = rclsx('base', { sm: 'sm-class other-sm-class' });
+  const expected = 'base sm:sm-class sm:other-sm-class';
+
+  expect(actual).toBe(expected);
+});
+
+test('Base class with several responsive object keys', () => {
+  const actual = rclsx('base', {
+    sm: 'sm-class other-sm-class',
+    md: 'md-class other-md-class',
+  });
+
+  const expected =
+    'base sm:sm-class sm:other-sm-class md:md-class md:other-md-class';
+
+  expect(actual).toBe(expected);
+});
+
+test('Whitespace craziness', () => {
+  const actual = rclsx('  base  other-base     ', {
+    sm: ' sm-class   other-sm-class  ',
+    md: 'md-class       other-md-class     ',
+  });
+
+  const expected =
+    'base other-base sm:sm-class sm:other-sm-class md:md-class md:other-md-class';
+
+  expect(actual).toBe(expected);
 });
