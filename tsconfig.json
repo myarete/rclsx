@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "outDir": "lib"
+    "downlevelIteration": true
   },
-  "exclude": ["node_modules", "lib"]
+  "exclude": ["node_modules"]
 }

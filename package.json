@@ -1,17 +1,17 @@
 {
-  "name": "twclsx",
+  "name": "rclsx",
   "version": "0.0.0",
   "author": "Chris Vandenberg",
   "license": "MIT",
-  "description": "Javascript objects for utility classes, inspired by tailwind.",
+  "description": "Javascript objects for responsive utility classes.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/altruisticsoftware/twclsx.git"
+    "url": "git+https://github.com/altruisticsoftware/rclsx.git"
   },
   "bugs": {
-    "url": "https://github.com/altruisticsoftware/twclsx/issues"
+    "url": "https://github.com/altruisticsoftware/rclsx/issues"
   },
   "files": [
     "lib"
@@ -45,8 +45,9 @@
     "tailwindcss",
     "clsx",
     "classnames",
+    "react",
     "tw",
-    "twclsx",
+    "rclsx",
     "styles",
     "javascript",
     "typescript",
@@ -61,7 +62,7 @@
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "jest": "^25.1.0",
+    "jest": "^25.2.0",
     "prettier": "^2.0.1",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3"

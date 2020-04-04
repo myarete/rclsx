@@ -1,89 +1,24 @@
 <img src="assets/logo.png" align="center" />
 
-## twclsx
-> Javascript objects for utility classes, inspired by [tailwind](https://tailwindcss.com/) and [clsx](https://github.com/lukeed/clsx).
+## rclsx
+**R**esponsive **CL**as**S**names... **X**  ¯\\_(ツ)_/¯
+
+> Javascript objects for responsive utility classes, inspired by 
+  [tailwind](https://tailwindcss.com/), [clsx](https://github.com/lukeed/clsx), 
+  and the [IBM 80](https://softwareengineering.stackexchange.com/questions/148677/why-is-80-characters-the-standard-limit-for-code-width).
+
+Shout-out to [GreenyMcgee](https://github.com/greenymcgee) for helping with this brainchild 🔥
 
 ### Installation
 
-`npm i -S twclsx`
+`npm i -S rclsx`
 
-### Usages
+### Usage
 
-1. Default configuration, will separate with `':'` and delimit with `' '`.
+```tsx
+import { rclsx } from 'rclsx';
 
-```ts
-import { twclsx } from 'twclsx';
-
-twclsx('mt-2', {
-  sm: 'px-1 py-2',
-  md: 'px-4 py-4',
-});
+rclsx('mt-2', { sm: 'px-1 py-2', md: 'px-4 py-4' })
 
 // => 'mt-2 sm:px-1 sm:py-2 md:px-4 md:py-4'
 ```
-
-<!-- 2. Custom configuration. 
-
-```ts
-// someUtilFile.{ts|js}
-import { configure } from 'twclsx';
-
-export const twclsx = configure({
-  separator: '::',
-  delimiter: '|'
-});
-
-// someOtherFile.{ts|js}
-import { twclsx } from './someUtilFile';
-
-twclsx('mt-2', {
-  sm: 'px-1|py-2',
-  md: 'px-4|py-4',
-});
-
-// => 'mt-2 sm::px-1 sm::py-2 md::px-4 md::py-4'
-``` -->
-
-<!-- 3. Custom configuration with type support.
-
-```ts
-// someUtilFile.{ts|js}
-import { configure } from 'twclsx';
-
-type BreakPoint = "small" | "medium";
-
-export const twclsx = configure<BreakPoint>({});
-
-// someOtherFile.{ts|js}
-import { twclsx } from './someUtilFile';
-
-twclsx('mt-2', {
-  small: 'px-1 py-2',
-  medium: 'px-4 py-4',
-  large: '' // ts error, "large" not assignable to "BreakPoint".
-});
-
-``` -->
-
-2. React.
-
-```tsx
-import { twclsx } from 'twclsx';
-
-const Component = () => (
-  <div className={twclsx('mt-2', {
-    sm: 'px-1 py-2',
-    md: 'px-4 py-4',
-  })}>
-    {/* ... */}
-  </div>
-);
-
-// => React.createElement("div", {
-//      className: 'mt-2 sm:px-1 sm:py-2 md:px-4 md:py-4'
-//    });
-```
-
-### Contributing
-
-Open to contributions! :)

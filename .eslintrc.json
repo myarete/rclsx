@@ -8,6 +8,7 @@
     "comma-dangle": 0,
     "semi": 0,
     "@typescript-eslint/member-delimiter-style": 0,
-    "@typescript-eslint/indent": 0
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/strict-boolean-expressions": 0
   }
 }

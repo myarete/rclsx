@@ -1,4 +1,5 @@
 import { twclsx, errors } from '.';
+import { rclsx } from './index';
 
 test('One responsive object key', () => {
   const actual = twclsx('px-1', { sm: 'py-1 mx-1' });
