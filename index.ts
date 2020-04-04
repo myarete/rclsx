@@ -6,6 +6,8 @@ interface ResponsiveObject {
   xxl?: string;
 }
 
+const iterator = (key: string) => (value: string): string => key + ':' + value;
+
 export const rclsx = (...args: [string, ResponsiveObject]): string => {
   const [base = '', responsiveObject = {}] = args;
 
@@ -13,7 +15,7 @@ export const rclsx = (...args: [string, ResponsiveObject]): string => {
 
   const result: string[] = entries.reduce(
     (acc, [key, value]) => {
-      const additional = value.split(' ').map(v => `${key}:${v}`);
+      const additional = value.split(' ').map(iterator(key));
       return [...acc, ...additional];
     },
     [base],
