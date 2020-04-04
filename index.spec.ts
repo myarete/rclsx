@@ -1,5 +1,13 @@
 import { rclsx } from './index';
 
+test('Undefined as the only argument', () => {
+  // @ts-ignore
+  const actual = rclsx(undefined);
+  const expected = '';
+
+  expect(actual).toBe(expected);
+});
+
 test('Just a base class', () => {
   const actual = rclsx('base');
   const expected = 'base';
@@ -10,13 +18,6 @@ test('Just a base class', () => {
 test('Just a responsive object', () => {
   const actual = rclsx({ sm: 'sm-class other-sm-class' });
   const expected = 'sm:sm-class sm:other-sm-class';
-
-  expect(actual).toBe(expected);
-});
-
-test('Base class with one responsive object key', () => {
-  const actual = rclsx('base', { sm: 'sm-class other-sm-class' });
-  const expected = 'base sm:sm-class sm:other-sm-class';
 
   expect(actual).toBe(expected);
 });

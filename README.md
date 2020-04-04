@@ -15,10 +15,23 @@ Shout-out to [GreenyMcgee](https://github.com/greenymcgee) for helping with this
 
 ### Usage
 
+1. Basic
 ```tsx
 import { rclsx } from 'rclsx';
 
 rclsx('mt-2', { sm: 'px-1 py-2', md: 'px-4 py-4' })
 
 // => 'mt-2 sm:px-1 sm:py-2 md:px-4 md:py-4'
+```
+
+2. Nested with `clsx`.
+```tsx
+import { rclsx } from 'rclsx';
+import { clsx } from 'clsx';
+
+rclsx({ 
+  sm: clsx({ [SOME_TRUE_CONDITION]: 'conditional-small-class' }),
+});
+
+// => 'sm:conditional-small-class'
 ```
