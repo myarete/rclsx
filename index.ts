@@ -14,10 +14,7 @@ export const rclsx = (...args: [string, ResponsiveObject]): string => {
   const entries: Array<[string, string]> = Object.entries(responsiveObject);
 
   const result: string[] = entries.reduce(
-    (acc, [key, value]) => {
-      const additional = value.split(' ').map(iterator(key));
-      return [...acc, ...additional];
-    },
+    (acc, [key, value]) => [...acc, ...value.split(' ').map(iterator(key))],
     [base],
   );
 
