@@ -1,6 +1,6 @@
 {
   "name": "rclsx",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Chris Vandenberg",
   "license": "MIT",
   "description": "Javascript objects for responsive utility classes.",
