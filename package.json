@@ -23,7 +23,8 @@
     "test": "jest --coverage",
     "test-watch": "jest --coverage --watch",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint"
+    "prepublishOnly": "npm test && npm run lint",
+    "validate": "npm run lint && npm run test"
   },
   "jest": {
     "preset": "ts-jest",
