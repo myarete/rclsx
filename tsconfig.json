@@ -9,7 +9,6 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "downlevelIteration": true,
-    "outDir": "./lib",
     "removeComments": true
   },
   "exclude": ["node_modules"]
