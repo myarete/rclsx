@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "format": "npx prettier --write \"index.ts\" \"index.spec.ts\"",
-    "build": "./node_modules/typescript/bin/tsc -p tsconfig.build.json",
+    "build": "bash ./scripts/build.sh",
     "lint": "npx eslint index.ts index.spec.ts",
     "test": "jest --coverage",
     "test-watch": "jest --coverage --watch",
