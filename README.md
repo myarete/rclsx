@@ -29,15 +29,6 @@ rclsx('mt-2', { sm: 'px-1 py-2', md: 'px-4 py-4' });
 // => 'mt-2 sm:px-1 sm:py-2 md:px-4 md:py-4'
 ```
 
-Nested with `clsx`.
-
-```tsx
-import { rclsx } from 'rclsx';
-import { clsx } from 'clsx';
-
-rclsx({ 
-  sm: clsx({ [SOME_TRUE_CONDITION]: 'conditional-small-class' })
-});
-
-// => 'sm:conditional-small-class'
-```
+#### Todos: 
+- [ ] Add checks for duplicate classNames
+- [ ] Add secondary prefixes? (ie `{border: color-500 b t}`)
