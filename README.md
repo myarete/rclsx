@@ -1,3 +1,6 @@
+### DEPRECATED
+[Tailwind has come a long way](https://tailwindcss.com/docs/just-in-time-mode) since publishing this! The simplicity intended from using this module violates [their optimization recommendations and JIT capabilities](https://tailwindcss.com/docs/optimizing-for-production) entirely by dynamically concatenating class names, rendering the purging parser useless :) Oops! Thanks for checking it out anyway! ❤️
+
 <img src="assets/logo.png" align="center" />
 
 ## rclsx 
@@ -7,19 +10,15 @@
 [![Build Status](https://travis-ci.com/altruisticsoftware/rclsx.svg?branch=master)](https://travis-ci.com/altruisticsoftware/rclsx)
 [![Coverage Status](https://coveralls.io/repos/github/altruisticsoftware/rclsx/badge.svg?branch=master)](https://coveralls.io/github/altruisticsoftware/rclsx?branch=master)
 
-> Javascript objects for responsive utility classes. Inspired by 
+Javascript objects for responsive utility classes. Inspired by 
   [tailwind](https://tailwindcss.com/), [clsx](https://github.com/lukeed/clsx), 
   and the [IBM 80](https://softwareengineering.stackexchange.com/questions/148677/why-is-80-characters-the-standard-limit-for-code-width).
-
-Shout-out to [GreenyMcgee](https://github.com/greenymcgee) for helping with this brainchild 🔥
 
 ### Installation
 
 `npm i -S rclsx`
 
 ### Usage
-
-Basic
 
 ```tsx
 import { rclsx } from 'rclsx';
